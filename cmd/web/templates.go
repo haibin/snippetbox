@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/haibin/snippetbox/pkg/forms"
 	"github.com/haibin/snippetbox/pkg/models"
 )
 
@@ -14,6 +15,7 @@ import (
 // to it as the build progresses.
 type templateData struct {
 	CurrentYear int
+	Form        *forms.Form
 	Snippet     *models.Snippet
 	Snippets    []*models.Snippet
 }
@@ -23,7 +25,7 @@ func humanDate(t time.Time) string {
 }
 
 var functions = template.FuncMap{
-    "humanDate": humanDate,
+	"humanDate": humanDate,
 }
 
 func newTemplateCache(dir string) (map[string]*template.Template, error) {
